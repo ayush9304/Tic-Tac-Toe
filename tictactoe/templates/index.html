@@ -38,13 +38,13 @@
             <div class="sign-choice">
                 <div class="choices">
                     <div>
-                        <input type="radio" name="symbol" style="display: none;" checked>
+                        <input type="radio" value="X" name="symbol" style="display: none;" checked>
                         <div class="ripple-div">
                             <button class="draw selected" id="x" value="X">X</button>
                         </div>
                     </div>
                     <div>
-                        <input type="radio" name="symbol" style="display: none;">
+                        <input type="radio" value='O' name="symbol" style="display: none;">
                         <div class="ripple-div">
                             <button class="draw" id="o" value="O">O</button>
                         </div>
@@ -63,27 +63,27 @@
 
         <div class="game" style="display: none;">
             <div class="row">
-                <div class="col top-left"></div>
+                <div class="col top-left" data-location="0,0"></div>
                 <div class="seperator-v"></div>
-                <div class="col top-middle"></div>
+                <div class="col top-middle" data-location="0,1"></div>
                 <div class="seperator-v"></div>
-                <div class="col top-right"></div>
+                <div class="col top-right" data-location="0,2"></div>
             </div>
             <div class="seperator-h"></div>
             <div class="row">
-                <div class="col middle-left"></div>
+                <div class="col middle-left" data-location="1,0"></div>
                 <div class="seperator-v"></div>
-                <div class="col middle-middle"></div>
+                <div class="col middle-middle" data-location="1,1"></div>
                 <div class="seperator-v"></div>
-                <div class="col middle-right"></div>
+                <div class="col middle-right" data-location="1,2"></div>
             </div>
             <div class="seperator-h"></div>
             <div class="row">
-                <div class="col bottom-left"></div>
+                <div class="col bottom-left" data-location="2,0"></div>
                 <div class="seperator-v"></div>
-                <div class="col bottom-middle"></div>
+                <div class="col bottom-middle" data-location="2,1"></div>
                 <div class="seperator-v"></div>
-                <div class="col bottom-right"></div>
+                <div class="col bottom-right" data-location="2,2"></div>
             </div>
         </div>
     </div>
