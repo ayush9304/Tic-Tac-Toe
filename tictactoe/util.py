@@ -68,18 +68,18 @@ def winner(board):
 
     #Horizontal Check
     for row in board:
-        if row[0]==row[1] and row[1]==row[2]:
+        if row[0]==row[1] and row[1]==row[2] and row[0] != None:
                 return row[0]
     
     #Vertical Check
     for i in range(len(board[0])):
-        if board[0][i]==board[1][i] and board[1][i]==board[2][i]:
+        if board[0][i]==board[1][i] and board[1][i]==board[2][i] and board[0][i] != None:
                 return board[0][i]
     
     #Diagonal Check
-    if board[0][0]==board[1][1] and board[1][1]==board[2][2]:
+    if board[0][0]==board[1][1] and board[1][1]==board[2][2] and board[0][0] != None:
             return board[0][0]
-    if board[0][2]==board[1][1] and board[1][1]==board[2][0]:
+    if board[0][2]==board[1][1] and board[1][1]==board[2][0] and board[0][2] != None:
             return board[0][2]
 
     return None
@@ -121,7 +121,6 @@ def minimax(board):
         return None
     
     turn = player(board)
-    choices = []
     last_action = None
     if turn==X:
         last_v = -math.inf

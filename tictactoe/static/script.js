@@ -2,15 +2,16 @@ const coordinates = [['top-left','top-middle','top-right'],
                      ['middle-left','middle-middle','middle-right'],
                      ['bottom-left','bottom-middle','bottom-right']];
 
-moves = [[null,null,null],
-         [null,null,null],
-         [null,null,null]];
+let moves = [[null,null,null],
+             [null,null,null],
+             [null,null,null]];
 
 
-turn = 'X';
-user = 'X';
-computer = 'O';
-first = false;
+let turn = 'X';
+let user = 'X';
+let computer = 'O';
+let first = false;
+let second = false;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.col').forEach(box => {
@@ -70,12 +71,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     user = "X";
                     computer = "O";
                     first = false;
+                    second = true;
                     break;
                 case "o":
                     document.querySelector("#x").classList.remove("selected");
                     user = "O";
                     computer = "X";
                     first = true;
+                    second = false;
                     break;
                 default:
                     break;
@@ -95,52 +98,57 @@ function ai_play(){
         },600);
         return;
     }
-    else{
-        setTimeout(() => {
-            let str_mat = str_matrix()
-            fetch("/game/move", {
-                method: 'POST',
-                body: JSON.stringify({
-                    matrix: str_mat
-                })
-            })
-            .then(response => response.json())
-            .then(move => {
-                make_move(move.row,move.col);
-            })
-            .then(() => {
-                str_mat = str_matrix()
-                fetch("/game/status", {
-                    method: 'POST',
-                    body: JSON.stringify({
-                        matrix: str_mat
-                    })
-                })
-                .then(response => response.json())
-                .then(match => {
-                    if(match.end){
-                        switch (match.winner) {
-                            case 'X':
-                                alert("X wins");
-                                break;
-                            case 'O':
-                                alert("O wins");
-                                break;
-                            default:
-                                alert("Match Draw");
-                                break;
-                        }
-                    }
-                    else{
-                        turn = user;
-                    }
-                });
-            });
-            
-            
-        },300);
+    else if(second){
+        ai_turn();
+        second = false;
     }
-    /////////////////////////Backend
+    else{
+        setTimeout(() =>{
+            ai_turn();
+        },500);
+    }
+}
+
+function ai_turn(){
+    let str_mat = str_matrix()
+    fetch("/game/move", {
+        method: 'POST',
+        body: JSON.stringify({
+            matrix: str_mat
+        })
+    })
+    .then(response => response.json())
+    .then(move => {
+        make_move(move.row,move.col);
+    })
+    .then(() => {
+        str_mat = str_matrix()
+        fetch("/game/status", {
+            method: 'POST',
+            body: JSON.stringify({
+                matrix: str_mat
+            })
+        })
+        .then(response => response.json())
+        .then(match => {
+            if(match.end){
+                switch (match.winner) {
+                    case 'X':
+                        alert("X wins");
+                        break;
+                    case 'O':
+                        alert("O wins");
+                        break;
+                    default:
+                        alert("Match Draw");
+                        break;
+                }
+            }
+            else{
+                turn = user;
+            }
+        });
+    });
 }
 
 function make_move(i,j){
