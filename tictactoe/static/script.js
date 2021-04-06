@@ -11,7 +11,7 @@ let turn = 'X';
 let user = 'X';
 let computer = 'O';
 let first = false;
-let second = false;
+let second = true;
 
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll('.col').forEach(box => {
@@ -33,12 +33,15 @@ document.addEventListener("DOMContentLoaded", () => {
                             switch (match.winner) {
                                 case 'X':
                                     alert("X wins");
+                                    document.querySelector(".restart").style.display = "block";
                                     break;
                                 case 'O':
                                     alert("O wins");
+                                    document.querySelector(".restart").style.display = "block";
                                     break;
                                 default:
                                     alert("Match Draw");
+                                    document.querySelector(".restart").style.display = "block";
                                     break;
                             }
                         }
@@ -135,12 +138,15 @@ function ai_turn(){
                 switch (match.winner) {
                     case 'X':
                         alert("X wins");
+                        document.querySelector(".restart").style.display = "block";
                         break;
                     case 'O':
                         alert("O wins");
+                        document.querySelector(".restart").style.display = "block";
                         break;
                     default:
                         alert("Match Draw");
+                        document.querySelector(".restart").style.display = "block";
                         break;
                 }
             }
@@ -155,6 +161,7 @@ function make_move(i,j){
     moves[parseInt(i)][parseInt(j)] = turn;
     document.querySelector(`.${coordinates[parseInt(i)][parseInt(j)]}`).innerHTML = `<span>${turn}</span>`;
 }
+
 
 function str_matrix(){
     matrix = "";
