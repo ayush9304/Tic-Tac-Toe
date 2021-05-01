@@ -171,12 +171,23 @@
     position: absolute;
     bottom: 0;
     width: 100%;
-    display: flex;
-    justify-content: center;
     font-family: 'Barlow', sans-serif;
     margin: 10px 0 10px 0;
     color: #1d1d1d;
     opacity: 0.5;
+}
+.footer > div{
+    display: flex;
+    justify-content: center;
+}
+.footer #links > div{
+    margin: 0 .3em;
+}
+.footer #github{
+    color: #24292e;
+}
+.footer #linkedin{
+    color: blue;
 }
 
 
