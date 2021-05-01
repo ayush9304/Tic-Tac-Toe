@@ -26,7 +26,9 @@ SECRET_KEY = 'rno_rle2!ousa@z74op=%h$@du#5qe6vl74053!4v9nv9i6qjt'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    "tictactoe-online-game.herokuapp.com",
+]
 
 
 # Application definition
